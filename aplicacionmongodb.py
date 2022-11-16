@@ -164,7 +164,6 @@ def eliminar_estudiante():
 def consulta_alum(estu):
     obj_PyMongo = PyMongo(varmongo)
     print(" == CONSULTAR MATERIAS POR ESTUDIANTE ==")
-    dicc = {}
     ctrl = estu
     filtro = {'control': ctrl}
     atributos_estudiante = {"_id": 0, "nombre": 1}
@@ -176,7 +175,7 @@ def consulta_alum(estu):
     # print("respuesta1", respuesta1)
     # print("respuesta2", respuesta2)
     if respuesta1["status"] and respuesta2["status"]:
-        
+
         print("Estudiante: ", respuesta1["resultado"][0]["nombre"])
         for mat in respuesta2["resultado"]:
             print(mat["materia"], mat["calificacion"])
