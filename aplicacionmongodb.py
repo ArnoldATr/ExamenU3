@@ -174,11 +174,19 @@ def consulta_alum(estu):
     obj_PyMongo.desconectar_mongodb()
     # print("respuesta1", respuesta1)
     # print("respuesta2", respuesta2)
-    if respuesta1["status"] and respuesta2["status"]:
+    list = {}
+    dir = []
 
-        print("Estudiante: ", respuesta1["resultado"][0]["nombre"])
+    if (respuesta1["status"] == True and respuesta2["status"]):
+        list["estudiante"] = respuesta1["resultado"][0]["nombre"]
         for mat in respuesta2["resultado"]:
-            print(mat["materia"], mat["calificacion"])
+            dicc = {}
+            dicc["materia"] = mat["materia"]
+            dicc["calificacion"] = mat["calificacion"]
+            dir.append(dicc)
+            list["materias"] = dir
+            alumno = json.dumps(list)
+        return alumno
 
 def menu():
     while True:
@@ -208,7 +216,7 @@ def menu():
             elif opcion == 5:
                 eliminar_estudiante()
             elif opcion == 6:
-                consulta_alum("18420428")
+                print(consulta_alum("18420428"))
             elif opcion == 7:
                 break
             else:
